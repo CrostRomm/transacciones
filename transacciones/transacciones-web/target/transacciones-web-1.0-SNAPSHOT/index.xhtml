@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>No transaccional</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <f:event type="preRenderView" listener="#{bean.pintarPadre()}"/>
+        <f:event type="preRenderView" listener="#{bean.pintarHijo()}"/>
+    </h:head>
+    <h:body>
+        <p:messages id="msgs" showDetail="true" closable="true"/>
+        <style type="text/css">
+            .tab1{
+                background-color: blueviolet;
+             }
+        </style>
+        <h:form>
+            <p:tabView>
+                <p:tab title="No Transaccional" class="tab1">
+                    <h:panelGrid>
+                        <!-- TABLA PADRE -->
+                        <h2><p><b>No transaccional</b></p></h2>
+                        <br/>
+                        <p:inputText id="docPadre" requiredMessage="Campo obligatorio" value="#{bean.pojoP.documento}" maxlength="10" type="number" placeholder="123456789"/>
+                        <p:inputText id="nombrePadre" value="#{bean.pojoP.nombre}" placeholder="José Ramon Ílera" maxlength="25"/>
+                        
+                        <button class="btn btn-info" jsf:actionListener="#{bean.requiredNoTransaccional()}" update="msgs">Required</button>  
+                        <button class="btn btn-info" jsf:actionListener="#{bean.requiredNewNoTransaccional()}" update="msgs">Requires_new</button>
+                        <button class="btn btn-danger" jsf:actionListener="#{bean.mandatoryNoTransaccional()}" update="msgs">Mandatory</button>
+                        <button class="btn btn-info" jsf:actionListener="#{bean.supportNoTransaccional()}" update="msgs">Support - Lógico</button>
+                        <button class="btn btn-danger" jsf:actionListener="#{bean.supportNoTransaccionalBD()}" update="msgs">Support - BD</button>
+                        <button class="btn btn-info" jsf:actionListener="#{bean.noSupportNoTransaccional()}" update="msgs">No Support - Lógico</button>
+                        <button class="btn btn-danger" jsf:actionListener="#{bean.noSupportNoTransaccionalBD()}" update="msgs">No Support - BD</button>
+                        <button class="btn btn-info" jsf:actionListener="#{bean.neverNoTransaccional()}" update="msgs">Never - Lógico</button>
+                        <button class="btn btn-danger" jsf:actionListener="#{bean.neverNoTransaccionalBD()}" update="msgs">Never - BD</button>
+                        
+                        <br/>
+                        <p:separator/>
+                        <br/>
+
+                        <p:dataTable id="tblp" paginator="true" rows="3" var="p" value="#{bean.listaPadre}" editable="true" style="margin-bottom:20px" emptyMessage="No hay padres">
+                            <p:column headerText="Documento" style="width: 15%">
+                                <h:outputText value="#{p.documento}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{p.nombre}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGrid>
+                </p:tab>
+            </p:tabView>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,11 @@
+Entity\Hijo_.class
+POJO\HijoPOJO.class
+Controller\HijoFacade.class
+Default\AbstractFacade.class
+Entity\Hijo.class
+Entity\Persona_.class
+Controller\PersonaFacade.class
+Entity\Persona.class
+Interfaces\HijoFacadeLocal.class
+Interfaces\PersonaFacadeLocal.class
+POJO\PadrePOJO.class
